@@ -1,0 +1,26 @@
+name: kakao_map_editting_example
+description: Demonstrates how to use the kakao_map_editting plugin.
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.0-37.0.dev <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  location: ^4.3.0
+  kakaomap_webview: ^0.5.0
+
+  cupertino_icons: ^1.0.2
+  get: 4.3.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true

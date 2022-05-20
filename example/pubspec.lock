@@ -107,7 +107,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-  kakao_map_editting:
+  kakao_map_editing:
     dependency: "direct main"
     description:
       path: ".."

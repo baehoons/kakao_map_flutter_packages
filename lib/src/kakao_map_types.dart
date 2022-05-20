@@ -1,4 +1,4 @@
-import 'package:kakao_map_editting/kakao_map_editting.dart';
+import 'package:kakao_map_editing/kakao_map_editing.dart';
 
 class KakaoLatLng {
   double latitude;

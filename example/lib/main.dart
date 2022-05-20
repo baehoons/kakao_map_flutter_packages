@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kakao_map_editting/kakao_map_editting.dart';
+import 'package:kakao_map_editing/kakao_map_editing.dart';
 
 void main() => runApp(MyApp());
 

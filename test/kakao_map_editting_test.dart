@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:kakao_map_editting/kakao_map_editting.dart';
+import 'package:kakao_map_editing/kakao_map_editing.dart';
 
 void main() {
   test('adds one to input values', () {

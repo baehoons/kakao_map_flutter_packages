@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kakao_map_editting/kakao_map_editting.dart';
-import 'package:kakao_map_editting/src/kakao_map_state.dart';
-import 'package:kakao_map_editting/src/kakao_map_util.dart';
+import 'package:kakao_map_editing/kakao_map_editing.dart';
+import 'package:kakao_map_editing/src/kakao_map_state.dart';
+import 'package:kakao_map_editing/src/kakao_map_util.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class KakaoMap extends StatelessWidget {

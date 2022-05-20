@@ -1,5 +1,5 @@
-name: kakao_map_editting_example
-description: Demonstrates how to use the kakao_map_editting plugin.
+name: kakao_map_editing_example
+description: Demonstrates how to use the kakao_map_editing plugin.
 
 publish_to: 'none'
 version: 1.0.0+1
@@ -16,7 +16,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   get: 4.3.8
-  kakao_map_editting:
+  kakao_map_editing:
     path: ..
 
 dev_dependencies:

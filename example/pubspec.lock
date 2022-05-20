@@ -110,9 +110,9 @@ packages:
   kakao_map_editing:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      name: kakao_map_editing
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.0.0"
   kakaomap_webview:
     dependency: "direct main"

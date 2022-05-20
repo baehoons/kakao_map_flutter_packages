@@ -41,8 +41,8 @@ class KakaoMapUtil {
       });
       resultStr += "},";
     });
-    return resultStr + "]";
 
+    return resultStr + "]";
   }
 
   static String listToJsString(List<String> list) {
@@ -57,7 +57,7 @@ class KakaoMapUtil {
 
   static KakaoLatLng parseKakaoLatLng(String m) {
     final List<String> latLngStr =
-        m.replaceAll(_parseLocationRegExp, '').split(' ');
+    m.replaceAll(_parseLocationRegExp, '').split(' ');
     return KakaoLatLng(double.parse(latLngStr[0]), double.parse(latLngStr[1]));
   }
 }

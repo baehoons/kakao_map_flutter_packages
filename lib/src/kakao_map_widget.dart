@@ -38,15 +38,15 @@ class KakaoMap extends StatelessWidget {
 
   KakaoMap(
       {this.width = double.infinity,
-      this.height = 500,
-      required this.initLocation,
-      this.level = 3,
-      required this.kakaoApiKey,
-      this.clustererServiceEnable = false,
-      this.onMapCreated,
-      this.onMapLoaded,
-      this.onMarkerTouched,
-      this.geocodingServiceEnable = false});
+        this.height = 500,
+        required this.initLocation,
+        this.level = 3,
+        required this.kakaoApiKey,
+        this.clustererServiceEnable = false,
+        this.onMapCreated,
+        this.onMapLoaded,
+        this.onMarkerTouched,
+        this.geocodingServiceEnable = false});
 
   // map controller
   late final KakaoMapController _kakaoMapController;
@@ -62,7 +62,7 @@ class KakaoMap extends StatelessWidget {
             builder: (BuildContext context, BoxConstraints constraints) =>
                 WebView(
                   initialUrl:
-                      getMapPage(constraints.maxWidth, constraints.maxHeight),
+                  getMapPage(constraints.maxWidth, constraints.maxHeight),
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (WebViewController wc) {
                     _kakaoMapController = KakaoMapController(wc);
@@ -89,9 +89,8 @@ class KakaoMap extends StatelessWidget {
                         name: 'markerTouch',
                         onMessageReceived: (m) {
                           if (onMarkerTouched != null) {
-
                             final List<String> markerInfo =
-                                m.message.split('_');
+                            m.message.split('_');
                             onMarkerTouched!(
                                 KakaoMapUtil.parseKakaoLatLng(markerInfo[0]),
                                 int.parse(markerInfo[1]));
@@ -165,7 +164,7 @@ class KakaoMapController {
   // set center point
   Future setCenter(KakaoLatLng location) async {
     final String script =
-        '''(()=>{ const location = new kakao.maps.LatLng(${location.latitude}, ${location.longitude}); map.setCenter(location); })()''';
+    '''(()=>{ const location = new kakao.maps.LatLng(${location.latitude}, ${location.longitude}); map.setCenter(location); })()''';
     await _runScript(script);
   }
 
@@ -290,10 +289,10 @@ class KakaoMapController {
   // make sure enable clustererServiceEnable option.
   startClustering(
       {bool avgCenter = true,
-      int minLevel = 10,
-      List<int>? calculator,
-      List<String>? texts,
-      List<Map<String, String>>? styles}) {
+        int minLevel = 10,
+        List<int>? calculator,
+        List<String>? texts,
+        List<Map<String, String>>? styles}) {
     final String script = '''const clusterer = new kakao.maps.MarkerClusterer({
   map: map,
   averageCenter: $avgCenter,

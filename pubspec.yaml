@@ -1,11 +1,11 @@
 name: kakao_map_editting
 description: kakao map editting packages
 version: 0.0.1
-homepage:
+homepage: https://github.com/baehoons/kakao_map_flutter_packages
 
 environment:
   sdk: '>=2.18.0-37.0.dev <3.0.0'
-  flutter: ">=1.17.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:

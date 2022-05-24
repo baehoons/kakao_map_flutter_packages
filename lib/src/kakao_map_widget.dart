@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:kakao_map_editing/kakao_map_editing.dart';
 import 'package:kakao_map_editing/src/kakao_map_state.dart';
@@ -42,11 +41,11 @@ class KakaoMap extends StatelessWidget {
         required this.initLocation,
         this.level = 3,
         required this.kakaoApiKey,
-        this.clustererServiceEnable = false,
+        this.clustererServiceEnable = true,
         this.onMapCreated,
         this.onMapLoaded,
         this.onMarkerTouched,
-        this.geocodingServiceEnable = false});
+        this.geocodingServiceEnable = true});
 
   // map controller
   late final KakaoMapController _kakaoMapController;
@@ -107,7 +106,7 @@ class KakaoMap extends StatelessWidget {
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=yes'/>
   </head>
   <body style="margin:0; padding:0;">
-    <script type="text/javascript" src='https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=$kakaoApiKey${clustererServiceEnable ? '&libraries=clusterer' : ''}'></script>
+    <script type="text/javascript" src='https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=$kakaoApiKey${clustererServiceEnable ? '&libraries=clusterer,services,drawing' : ''}'></script>
     <div id='kakao_map_container' style="width:100%; height:100%; min-width:${width}px; min-height:${height}px;" />
     <script type="text/javascript">
       const container = document.querySelector('#kakao_map_container');
@@ -200,10 +199,46 @@ class KakaoMapController {
   // if addBounds option is true, you can use setBounds
   // addBounds default value is false
   // return marker index number
+
   int addMarker(KakaoLatLng location,
       {bool addBounds = false, String? markerImgLink, List<double>? iconSize}) {
     final String script = '''(()=>{
   const location = new kakao.maps.LatLng(${location.latitude}, ${location.longitude});
+  ${iconSize != null ? '''const icon = new kakao.maps.MarkerImage(
+    '$markerImgLink',
+    new kakao.maps.Size(${iconSize[0]}, ${iconSize[1]}));''' : ''}
+  const marker = new kakao.maps.Marker({
+    position: location,
+    ${iconSize != null ? 'image: icon,' : ''}
+    clickable: true
+  });
+  marker.setMap(map);
+  map.setCenter(location);
+  ${addBounds ? 'bounds.extend(location);' : ''}
+  markers[$_markerCount] = marker;
+  kakao.maps.event.addListener(marker, 'click', ()=>{
+    markerTouch.postMessage(location.toString()+'_$_markerCount');
+  });
+})()''';
+    _runScript(script);
+    if (addBounds && !_isUsingBounds) _isUsingBounds = true;
+    return _markerCount++;
+  }
+
+  int searchMarker(String name, String address,
+      {bool addBounds = false, String? markerImgLink, List<double>? iconSize}){
+    String as = "대한민국&nbsp서울&nbsp중구&nbsp동호로&nbsp249";
+    final String script = '''(()=>{
+var geocoder = new kakao.maps.services.Geocoder();
+
+
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch($address, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+  var location = new kakao.maps.LatLng(result[0].y, result[0].x);
   ${iconSize != null ? '''const icon = new kakao.maps.MarkerImage(
     '$markerImgLink',
     new kakao.maps.Size(${iconSize[0]}, ${iconSize[1]}));''' : ''}
@@ -218,11 +253,56 @@ class KakaoMapController {
   kakao.maps.event.addListener(marker, 'click', ()=>{
     markerTouch.postMessage(location.toString()+'_$_markerCount');
   });
+
+        
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        // var marker = new kakao.maps.Marker({
+        //     map: map,
+        //     position: coords
+        // });
+        //
+        // // 인포윈도우로 장소에 대한 설명을 표시합니다
+        // var infowindow = new kakao.maps.InfoWindow({
+        //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        // });
+        // infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(location);
+    } 
+});    
 })()''';
     _runScript(script);
     if (addBounds && !_isUsingBounds) _isUsingBounds = true;
     return _markerCount++;
   }
+
+
+//   int addMarkercustom(KakaoLatLng location,double latitude, double longitude,
+//       {bool addBounds = false, String? markerImgLink, List<double>? iconSize}) {
+//     final String script = '''(()=>{
+//   const location = new kakao.maps.LatLng($latitude, $longitude);
+//   ${iconSize != null ? '''const icon = new kakao.maps.MarkerImage(
+//     '$markerImgLink',
+//     new kakao.maps.Size(${iconSize[0]}, ${iconSize[1]}));''' : ''}
+//   const marker = new kakao.maps.Marker({
+//     position: location,
+//     ${iconSize != null ? 'image: icon,' : ''}
+//     clickable: true
+//   });
+//   marker.setMap(map);
+//   ${addBounds ? 'bounds.extend(location);' : ''}
+//   markers[$_markerCount] = marker;
+//   kakao.maps.event.addListener(marker, 'click', ()=>{
+//     markerTouch.postMessage(location.toString()+'_$_markerCount');
+//   });
+// })()''';
+//     _runScript(script);
+//     if (addBounds && !_isUsingBounds) _isUsingBounds = true;
+//     return _markerCount++;
+//   }
+
 
   // delete marker
   deleteMarker(int idx) {

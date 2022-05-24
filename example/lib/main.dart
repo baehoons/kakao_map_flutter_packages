@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
                     initLocation: KakaoLatLng(33.450701, 126.570667),
                     kakaoApiKey: "4c12a4f2df705b73991b499151219fb6",
                     clustererServiceEnable: true,
+                    geocodingServiceEnable: true,
                     onMapCreated: (controller) {
                       _mapController = controller;
                     },
@@ -59,6 +60,11 @@ class MyApp extends StatelessWidget {
                 else
                   _mapController.updateClustering();
               }, color: Colors.black87),
+              _customButton("리스트 가져오기 및 마커 ", onTap: () async {
+                String ks = '대한민국&nbsp서울&nbsp중구&nbsp동호로 249';
+
+                _mapController.searchMarker("가천대", ks);
+              }, color: Colors.green),
             ]),
           )),
     );

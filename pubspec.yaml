@@ -1,6 +1,6 @@
 name: kakao_map_editing
 description: kakao map editing packages
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/baehoons/kakao_map_flutter_packages
 
 environment:

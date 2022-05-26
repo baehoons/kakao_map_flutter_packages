@@ -5,12 +5,19 @@ import 'package:kakao_map_editing/kakao_map_editing.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  List<KakaoLatLng> ks = [];
+  late KakaoLatLng as1;
+  late KakaoLatLng as2;
+  late KakaoLatLng as3;
+  late KakaoLatLng as4;
   MyApp({Key? key}) : super(key: key);
 
   late final KakaoMapController _mapController;
 
   @override
   Widget build(BuildContext context) {
+    gets();
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -19,7 +26,7 @@ class MyApp extends StatelessWidget {
               Expanded(
                   child: KakaoMap(
                     initLocation: KakaoLatLng(33.450701, 126.570667),
-                    kakaoApiKey: "api key",
+                    kakaoApiKey: "your api key",
                     clustererServiceEnable: true,
                     geocodingServiceEnable: true,
                     onMapCreated: (controller) {
@@ -65,9 +72,37 @@ class MyApp extends StatelessWidget {
 
                 _mapController.searchMarker("가천대", ks);
               }, color: Colors.green),
+              _customButton("여러 개 마커 ", onTap: () async {
+
+
+
+                // for(var i=0;i>=ks.length-1;i++){
+                //   _mapController.addMarker(ks[i]);
+                // }
+                await _mapController.addMarker(as1);
+                await _mapController.addMarker(as2);
+                await _mapController.addMarker(as3);
+                await _mapController.addMarker(as4);
+
+
+
+              }, color: Colors.green),
             ]),
           )),
     );
+  }
+
+  void gets(){
+
+    as1 = KakaoLatLng(35.160065, 129.16313);
+    as2 = KakaoLatLng(37.557507, 127.00795);
+    as3 = KakaoLatLng(35.16133, 129.16801);
+    as4 = KakaoLatLng(37.451237, 127.129395);
+    ks.add(as1);
+    ks.add(as2);
+    ks.add(as3);
+    ks.add(as4);
+
   }
 
   Widget _customButton(String text,

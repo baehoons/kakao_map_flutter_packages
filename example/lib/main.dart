@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
               Expanded(
                   child: KakaoMap(
                     initLocation: KakaoLatLng(33.450701, 126.570667),
-                    kakaoApiKey: "your api key",
+                    kakaoApiKey: "api key",
                     clustererServiceEnable: true,
                     geocodingServiceEnable: true,
                     onMapCreated: (controller) {
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
               }, color: Colors.red),
               _customButton("모든 마커 클러스터링하기", onTap: () {
                 if (!_mapController.nowClusteringEnabled())
-                  _mapController.startClustering(minLevel: 5);
+                  _mapController.startClustering();
                 else
                   _mapController.updateClustering();
               }, color: Colors.black87),
@@ -74,15 +74,19 @@ class MyApp extends StatelessWidget {
               }, color: Colors.green),
               _customButton("여러 개 마커 ", onTap: () async {
 
-
-
                 // for(var i=0;i>=ks.length-1;i++){
                 //   _mapController.addMarker(ks[i]);
                 // }
-                await _mapController.addMarker(as1);
-                await _mapController.addMarker(as2);
-                await _mapController.addMarker(as3);
-                await _mapController.addMarker(as4);
+                await _mapController.addMarkerInfo(as1,"가천대");
+                await _mapController.addMarkerInfo(as2,"롯데");
+                await _mapController.addMarkerInfo(as3,"1");
+                await _mapController.addMarkerInfo(as4,"@");
+
+                if (!_mapController.nowClusteringEnabled()) {
+                  await _mapController.startClustering(minLevel: 5);
+                } else {
+                  await _mapController.updateClustering();
+                }
 
 
 
@@ -116,8 +120,9 @@ class MyApp extends StatelessWidget {
                 child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
                     child: Text(text,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
+
                         textAlign: TextAlign.center))),
           ));
 }

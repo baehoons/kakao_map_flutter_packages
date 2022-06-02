@@ -93,6 +93,7 @@ class KakaoMap extends StatelessWidget {
                             onMarkerTouched!(
                                 KakaoMapUtil.parseKakaoLatLng(markerInfo[0]),
                                 int.parse(markerInfo[1]));
+                                getMapPage(25.0, 17.0);
                           }
                         }),
                   ]),
@@ -148,6 +149,7 @@ class KakaoMapController {
 
   Future _runScript(String script) async =>
       await _controller.evaluateJavascript(script);
+
 
   // reload map
   Future reload() async => await _controller.reload();
@@ -225,7 +227,7 @@ class KakaoMapController {
     return _markerCount++;
   }
 
-  int addMarkerInfo(KakaoLatLng location,
+  int addMarkerInfo(KakaoLatLng location, String id,
       {bool addBounds = false, String? markerImgLink, List<double>? iconSize}) {
     final String script = '''(()=>{
   const location = new kakao.maps.LatLng(${location.latitude}, ${location.longitude});
@@ -242,7 +244,7 @@ class KakaoMapController {
   ${addBounds ? 'bounds.extend(location);' : ''}
   markers[$_markerCount] = marker;
   kakao.maps.event.addListener(marker, 'click', ()=>{
-    markerTouch.postMessage(location.toString()+'_$_markerCount');
+    markerTouch.postMessage(location.toString()+'_$_markerCount'+'  ID is'+$id);
   });
 })()''';
     _runScript(script);
@@ -333,6 +335,7 @@ function displayMarker(place) {
 }
     })()''';
     _runScript(script);
+
   }
 
 

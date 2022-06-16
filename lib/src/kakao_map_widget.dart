@@ -330,6 +330,7 @@ function displayMarker(place) {
     kakao.maps.event.addListener(marker, 'click', function() {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
         infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        
         infowindow.open(map, marker);
     });
 }
@@ -390,6 +391,7 @@ function displayMarker(place) {
   // add custom overlay
   // change overlayHtml, using markerHtml option
   // return custom overlay index number
+
   int addCustomOverlay(KakaoLatLng location, {String? markerHtml}) {
     String html = markerHtml ??
         '''<div style="background-color: orangered; border: 3px solid white; box-shadow: 1px 2px 4px rgba(0,0,0,0.2); border-radius: 9999px; padding: 7px;"/>''';
@@ -408,7 +410,6 @@ function displayMarker(place) {
 
   // number of custom overlays
   int customOverlaysCount() => _customOverlayCount;
-
   // delete custom overlay using index number
   deleteCustomOverlay(int idx) {
     if (idx >= _customOverlayCount) return; // bounds of index

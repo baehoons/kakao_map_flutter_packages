@@ -5,7 +5,7 @@ class KakaoMapAddress {
   double longitude;
 
   KakaoMapAddress(this.latitude, this.longitude);
-
+  
   @override
   String toString() {
     return "lat : $latitude, lng: $longitude";

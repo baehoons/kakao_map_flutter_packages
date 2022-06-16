@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
               Expanded(
                   child: KakaoMap(
                     initLocation: KakaoLatLng(33.450701, 126.570667),
-                    kakaoApiKey: "api key",
+                    kakaoApiKey: "4c12a4f2df705b73991b499151219fb6",
                     clustererServiceEnable: true,
                     geocodingServiceEnable: true,
                     onMapCreated: (controller) {
@@ -88,8 +88,6 @@ class MyApp extends StatelessWidget {
                   await _mapController.updateClustering();
                 }
 
-
-
               }, color: Colors.green),
             ]),
           )),
@@ -122,7 +120,6 @@ class MyApp extends StatelessWidget {
                     child: Text(text,
                         style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
-
                         textAlign: TextAlign.center))),
           ));
 }

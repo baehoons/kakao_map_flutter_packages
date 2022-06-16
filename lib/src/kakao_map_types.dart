@@ -4,6 +4,7 @@ class KakaoLatLng {
   double latitude;
   double longitude;
 
+
   KakaoLatLng(this.latitude, this.longitude);
 
   @override
@@ -17,6 +18,7 @@ class KakaoLatLng {
 
   @override
   int get hashCode => super.hashCode;
+
 }
 
 typedef void KakaoMapCreatedCallback(KakaoMapController controller);

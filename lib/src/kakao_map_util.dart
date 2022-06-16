@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:kakao_map_editing/kakao_map_editing.dart';
 import 'package:location/location.dart';
 
@@ -29,6 +31,7 @@ class KakaoMapUtil {
 
     return KakaoLatLng(_locationData.latitude ?? 37.56633045338814,
         _locationData.longitude ?? 126.97703388516338);
+
   }
 
   static String mapListToJson(List<Map<String, String>> mapList) {
@@ -48,12 +51,14 @@ class KakaoMapUtil {
   static String listToJsString(List<String> list) {
     String resultStr = "[";
     list.forEach((e) {
+
       resultStr += "'$e', ";
     });
     return resultStr + "]";
   }
 
   static RegExp _parseLocationRegExp = new RegExp(r'[\(\),]');
+
 
   static KakaoLatLng parseKakaoLatLng(String m) {
     final List<String> latLngStr =

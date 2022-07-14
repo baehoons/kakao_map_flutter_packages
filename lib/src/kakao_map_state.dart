@@ -28,4 +28,8 @@ class KakaoMapState {
   setLevel(int n) {
     _level = n;
   }
+
+  updateLevel(){
+    
+  }
 }

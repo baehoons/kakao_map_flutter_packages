@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
               Expanded(
                   child: KakaoMap(
                     initLocation: KakaoLatLng(33.450701, 126.570667),
-                    kakaoApiKey: "4c12a4f2df705b73991b499151219fb6",
+                    kakaoApiKey: "your api key",
                     clustererServiceEnable: true,
                     geocodingServiceEnable: true,
                     onMapCreated: (controller) {

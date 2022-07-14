@@ -416,6 +416,7 @@ function displayMarker(place) {
     final String script =
         'customOverlays[$idx].setMap(null); customOverlays[$idx] = null;';
     _runScript(script);
+    
   }
 
   // delete all custom overlay
@@ -445,6 +446,7 @@ function displayMarker(place) {
 ${_markerCount != 0 ? 'clusterer.addMarkers(markers);' : ''}''';
     _runScript(script);
     _isUsingClustering = true;
+
   }
 
   // marker clusterer update

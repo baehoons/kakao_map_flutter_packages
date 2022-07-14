@@ -17,6 +17,7 @@ class KakaoMapAddress {
 
   @override
   int get hashCode => super.hashCode;
+
 }
 
 typedef void KakaoMapCreatedCallback(KakaoMapController controller);

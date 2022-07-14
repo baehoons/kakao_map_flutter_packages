@@ -15,7 +15,7 @@ class KakaoMapUtil {
     if (!_serviceEnabled) {
       _serviceEnabled = await location.requestService();
       if (!_serviceEnabled) {
-        return null; // todo : exception processing
+        return null;
       }
     }
 
@@ -23,7 +23,7 @@ class KakaoMapUtil {
     if (_permissionGranted == PermissionStatus.denied) {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
-        return null; // todo : exception processing
+        return null;
       }
     }
 
@@ -43,6 +43,7 @@ class KakaoMapUtil {
         resultStr += "$key: '$value', ";
       });
       resultStr += "},";
+
     });
 
     return resultStr + "]";
@@ -63,6 +64,7 @@ class KakaoMapUtil {
   static KakaoLatLng parseKakaoLatLng(String m) {
     final List<String> latLngStr =
     m.replaceAll(_parseLocationRegExp, '').split(' ');
+
     return KakaoLatLng(double.parse(latLngStr[0]), double.parse(latLngStr[1]));
   }
 }

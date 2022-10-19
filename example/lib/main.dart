@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   late KakaoLatLng as2;
   late KakaoLatLng as3;
   late KakaoLatLng as4;
+  late KakaoLatLng as5;
   MyApp({Key? key}) : super(key: key);
 
   late final KakaoMapController _mapController;
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
               Expanded(
                   child: KakaoMap(
                     initLocation: KakaoLatLng(33.450701, 126.570667),
-                    kakaoApiKey: "your api key",
+                    kakaoApiKey: "api key",
                     clustererServiceEnable: true,
                     geocodingServiceEnable: true,
                     onMapCreated: (controller) {
@@ -80,7 +81,9 @@ class MyApp extends StatelessWidget {
                 await _mapController.addMarkerInfo(as1,"가천대");
                 await _mapController.addMarkerInfo(as2,"롯데");
                 await _mapController.addMarkerInfo(as3,"1");
-                await _mapController.addMarkerInfo(as4,"@");
+                await _mapController.addMarkerInfo(as4,"all");
+                await _mapController.addMarkerInfo(as4,"we");
+
 
                 if (!_mapController.nowClusteringEnabled()) {
                   await _mapController.startClustering(minLevel: 5);
@@ -96,14 +99,16 @@ class MyApp extends StatelessWidget {
 
   void gets(){
 
-    as1 = KakaoLatLng(35.160065, 129.16313);
-    as2 = KakaoLatLng(37.557507, 127.00795);
-    as3 = KakaoLatLng(35.16133, 129.16801);
+    as1 = KakaoLatLng(37.557507, 127.00795);
+    as2 = KakaoLatLng(37.525192, 126.929115);
+    as3 = KakaoLatLng(36.37619, 127.39303);
     as4 = KakaoLatLng(37.451237, 127.129395);
+    as5 = KakaoLatLng(35.16133, 129.16801);
     ks.add(as1);
     ks.add(as2);
     ks.add(as3);
     ks.add(as4);
+    ks.add(as5);
 
   }
 
